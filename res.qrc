@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/pavIcon">
+        <file>InputConv.png</file>
+        <file>pav.png</file>
+        <file>OutputConv.png</file>
+        <file>SizeConv.png</file>
+        <file>icon.png</file>
+    </qresource>
+</RCC>
