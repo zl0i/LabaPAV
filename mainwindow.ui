@@ -69,7 +69,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="InputData_widget" native="true">
@@ -652,7 +652,7 @@
           <item>
            <widget class="QLabel" name="label_25">
             <property name="text">
-             <string>мм</string>
+             <string>мкм</string>
             </property>
            </widget>
           </item>

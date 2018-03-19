@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowIcon(QIcon(":/pavIcon/icon.png"));
-    QRegExp exp("[1-9]{1,3}[.]{0,1}[0-9]{0,2}");
+    QRegExp exp("[1-9]{1,1}[0-9]{0,2}[.]{0,1}[0-9]{0,2}");
     ui->lineEdit->setValidator(new QRegExpValidator(exp, this));
     ui->lineEdit_2->setValidator(new QRegExpValidator(exp, this));
     ui->lineEdit_3->setValidator(new QRegExpValidator(exp, this));
@@ -81,12 +81,12 @@ void MainWindow::on_pushButton_clicked() //далее
         ui->pushButton_2->setEnabled(true);
         ui->stackedWidget->setCurrentIndex(1);
         myState = InputConv;
-        //slotEnableOk();
+        slotEnableOk();
         return;
     }
     if(myState == InputConv) {
-        //if(!checkInputConv()) return;
-        //helpDialog->close();
+        if(!checkInputConv()) return;
+        helpDialog->close();
         QPixmap pix(":/pavIcon/OutputConv.png");
         ui->label_40->setGeometry(0, 0, pix.width()>650 ? 650:pix.width() , pix.height()>390 ? 390:pix.height());
         ui->label_40->setPixmap(pix);
@@ -95,19 +95,19 @@ void MainWindow::on_pushButton_clicked() //далее
         return;
     }
     if(myState == OutputConv) {
-        //if(!checkOutputConv()) return;
-        //helpDialog->close();
+        if(!checkOutputConv()) return;
+        helpDialog->close();
         QPixmap pix(":/pavIcon/SizeConv.png");
         ui->label_40->setGeometry(0, 0, pix.width()>650 ? 650:pix.width() , pix.height()>390 ? 390:pix.height());
         ui->label_40->setPixmap(pix);
         ui->stackedWidget->setCurrentIndex(3);
         myState = SizeConv;
-        //slotEnableOk();
+        slotEnableOk();
         return;
     }
     if(myState == SizeConv) {
-        //if(!checkSizeConv()) return;
-        //helpDialog->close();
+        if(!checkSizeConv()) return;
+        helpDialog->close();
         ui->label_40->clear();
         ui->stackedWidget->setCurrentIndex(4);
         ui->pushButton_2->setEnabled(false);
@@ -320,7 +320,7 @@ void MainWindow::on_spinBox_4_valueChanged(int arg1)
 }
 
 bool MainWindow::checkInputConv() {
-    bool error;
+    bool error = false;
     if(ui->comboBox->currentText() != strMaterial(myMaterial)) {
         ui->label_13->setStyleSheet("color: rgb(255, 0, 0)");
         error = true;
@@ -363,7 +363,7 @@ bool MainWindow::checkInputConv() {
     else {
         ui->label_22->setStyleSheet("color: rgb(0, 0, 0)");
     }
-    if( ui->lineEdit_6->text() != QString::number(W*1000)) {
+    if( ui->lineEdit_6->text() != QString::number(W*pow(10, 6))) {
         ui->label_24->setStyleSheet("color: rgb(255, 0, 0)");
         error = true;
     }

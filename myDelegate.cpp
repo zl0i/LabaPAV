@@ -34,7 +34,7 @@ LineEditDoubleDelegate::LineEditDoubleDelegate(QObject *parent):
 
 QWidget *LineEditDoubleDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const {
     QLineEdit *lbl = new QLineEdit(parent);
-    QRegExp exp("[1-9]{1,3}[.]{0,1}[0-9]{0,2}♦");
+    QRegExp exp("[1-9]{1,1}[0-9]{0,2}[.]{0,1}[0-9]{0,2}");
     lbl->setValidator(new QRegExpValidator(exp, parent));
     return lbl;
 }
